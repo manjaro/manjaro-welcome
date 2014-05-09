@@ -98,9 +98,9 @@ class ManjaroAppView(WebKit.WebView):
         # any suitable controllers will be able to listen and respond accordingly, for now
         # we just use jQuery to manually toggle
 
-        get_ram = ' '.join(str(check_output(['free', '-t', '-m'], 
+        get_ram = ' '.join(str(check_output(['free', '-h'], 
             universal_newlines=True)).split(' ')).split()
-        round_my_ram = round(int(get_ram[get_ram.index('Mem:') + 1]) / 1024)
+        round_my_ram = round(float(get_ram[get_ram.index('Mem:') + 1].replace('G', '')))
 
         def trim_text(current_line):
             return current_line.rstrip('\n').split(':')[1].lstrip()
