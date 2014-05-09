@@ -98,7 +98,7 @@ class ManjaroAppView(WebKit.WebView):
         # any suitable controllers will be able to listen and respond accordingly, for now
         # we just use jQuery to manually toggle
 
-        get_ram = ' '.join(format(check_output(['free', '-t', '-m'], 
+        get_ram = ' '.join(str(check_output(['free', '-t', '-m'], 
             universal_newlines=True)).split(' ')).split()
         round_my_ram = round(int(get_ram[get_ram.index('Mem:') + 1]) / 1024)
 
@@ -121,7 +121,7 @@ class ManjaroAppView(WebKit.WebView):
                 (self._config._autostart), to_json(not self._config._autostart)))
 
         self.execute_script("$('#ram-cpu-info').html('{0} core {1} @{2}, {3} GB RAM')".format(
-            cpu_cores, cpu_name, str(float(cpu_speed)).split('.')[0], round_my_ram))
+            cpu_cores, cpu_name, int(float(cpu_speed)), round_my_ram))
 
         self.execute_script("$('#{}').hide()".format(
             'buildmanjaro' if self._config._live else 'install'))
