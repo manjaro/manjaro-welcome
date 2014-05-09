@@ -89,6 +89,14 @@ footer {
     float: left;
     margin: 14px 0px 0px 10px;
 }
+#ram-cpu-info {
+    margin: 21px 0px 0px 10px;
+    float: left;
+    font-size: 12px;
+    color: #f2f2f2;
+    clear: right;
+    font-family: 'comfortaaregular';
+}
 #checkbox {
     margin-top: 19px;
     float: right;
