@@ -21,7 +21,7 @@
 import inspect
 import os
 from signal import signal, SIGINT, SIG_DFL
-from subprocess import Popen
+from subprocess import Popen, check_output
 from sys import exit
 try:
     # python 3
@@ -98,10 +98,30 @@ class ManjaroAppView(WebKit.WebView):
         # any suitable controllers will be able to listen and respond accordingly, for now
         # we just use jQuery to manually toggle
 
-        self.execute_script("$('#arch').html('{}')".format(self._config._arch))
+        get_ram = ' '.join(str(check_output(['free', '-h'], 
+            universal_newlines=True)).split(' ')).split()
+        round_my_ram = round(float(get_ram[get_ram.index('Mem:') + 1].replace('G', '')))
+
+        def trim_text(current_line):
+            return current_line.rstrip('\n').split(':')[1].lstrip()
+
+        with open('/proc/cpuinfo') as f:
+            for line in f:
+                if line.startswith('model name'):
+                    cpu_name = trim_text(line)
+                if line.startswith('cpu cores'):
+                    cpu_cores = trim_text(line)
+                if line.startswith('cpu MHz'):
+                    cpu_speed = trim_text(line)
+
+        self.execute_script("$('#arch').html('Hi {0} with {1} pc')".format(os.getlogin(),
+            self._config._arch))
         self.execute_script("$('#autostart').toggleClass('icon-check', {})\
             .toggleClass('icon-check-empty', {})".format(to_json
                 (self._config._autostart), to_json(not self._config._autostart)))
+
+        self.execute_script("$('#ram-cpu-info').html('{0} core {1} @{2}, {3} GB RAM')".format(
+            cpu_cores, cpu_name, int(float(cpu_speed)), round_my_ram))
 
         self.execute_script("$('#{}').hide()".format(
             'buildmanjaro' if self._config._live else 'install'))
