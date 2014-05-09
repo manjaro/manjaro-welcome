@@ -83,6 +83,7 @@
                 <a href="cmd://link?https://twitter.com/ManjaroLinux"><img class="social-media-img" src=img/social-twitter.png /></a>
                 <a href="cmd://link?https://www.reddit.com/r/ManjaroLinux"><img class="social-media-img" src=img/social-reddit.png /></a>
             </div>
+            <div id="ram-cpu-info"></div>
             <a id="close" href="cmd://close">Close</a>
             <div id="checkbox">
                 <a href="cmd://toggle-startup"><i id="autostart" class="icon-check"></i> Show this dialog on startup?</a>
