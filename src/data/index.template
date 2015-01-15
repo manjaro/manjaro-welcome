@@ -67,10 +67,6 @@
                     <img class="cont-png" src="img/icons/buildmanjaro.png"/>
                     <div class="cont-text">Build Manjaro</div>
                 </a>
-                <a class="cont-item" id="donations" href="cmd://link?http://manjaro.org/donate/">
-                    <img class="cont-png" src="img/icons/mailinglists.png"/>
-                    <div class="cont-text">Donations</div>
-                </a>
             </span>
         </div>
         <div style="margin-top: 210px; text-align:center; font-family:'droid_sansregular';">NOTE: The username and password for the Live Environment are both 'manjaro'.</div>
