@@ -107,15 +107,8 @@ class ManjaroAppView(WebKit.WebView):
             'buildmanjaro' if self._config._live else 'install'))
         self.execute_script("$('#{}').hide()".format(
             'donations' if self._config._live else 'install-cli'))
-
-        #if self._config.desktop == 'GNOME':
-        #  self.execute_script("$('#gnome_help').toggleClass('hide', false);")
-        #elif self._config.desktop == 'KDE':
-        #  self.execute_script("$('#kde_help').toggleClass('hide', false);")
-
-        #self.execute_script("$('#codename').html('%s')" % (to_json(self._config.codename)))
-        #self.execute_script("$('#desktop').html('%s')" % (to_json(self._config.desktop)))
-        #self.execute_script("$('#version').html('%s')" % (self._config.version))
+        self.execute_script("$('#{}').hide()".format(
+            'password' if not self._config._live else '#'))
 
     def _load_finished_cb(self, view, frame):
         self._push_config()
@@ -157,7 +150,10 @@ class ManjaroAppView(WebKit.WebView):
             Popen(['khelpcenter'])
 
         elif uri == 'install':
-            Popen(['sudo', 'thus'])
+            if os.path.exists("/usr/bin/thus"):
+                Popen(['sudo', 'thus'])
+            elif os.path.exists("/usr/bin/calamares"):
+                Popen(['sudo', 'calamares'])
 
         elif uri == 'install-cli':
             Popen(['manjaro-welcome-terminal', 'sudo setup'])
