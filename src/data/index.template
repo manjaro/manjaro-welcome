@@ -40,10 +40,6 @@
                     <img class="cont-png" src="img/icons/forums.png"/>
                     <div class="cont-text">Forums</div>
                 </a>
-                <a class="cont-item" href="cmd://link?http://manjaro.org/irc-channel/">
-                    <img class="cont-png" src="img/icons/chatroom.png"/>
-                    <div class="cont-text">Chat Room</div>
-                </a>
                 <a class="cont-item" href="cmd://link?http://lists.manjaro.org/cgi-bin/mailman/listinfo">
                     <img class="cont-png" src="img/icons/mailinglists.png"/>
                     <div class="cont-text">Mailing Lists</div>
@@ -66,10 +62,6 @@
                 <a class="cont-item" id="buildmanjaro"  href="cmd://link?https://github.com/manjaro/">
                     <img class="cont-png" src="img/icons/buildmanjaro.png"/>
                     <div class="cont-text">Build Manjaro</div>
-                </a>
-                <a class="cont-item" id="donations" href="cmd://link?http://manjaro.org/donate/">
-                    <img class="cont-png" src="img/icons/mailinglists.png"/>
-                    <div class="cont-text">Donations</div>
                 </a>
             </span>
         </div>
