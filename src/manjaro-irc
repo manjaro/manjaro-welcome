@@ -1,0 +1,3 @@
+#!/bin/sh
+# IRC-channel
+xdg-open "https://kiwiirc.com/client/irc.freenode.net/?nick=manjaro-web|?#manjaro"
