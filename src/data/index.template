@@ -29,22 +29,22 @@
                     <img class="cont-png" src="img/icons/newfeatures.png"/>
                     <div class="cont-text">Release Info</div>
                 </a>
-                <a class="cont-item" href="cmd://link?http://wiki.manjaro.org">
+                <a class="cont-item" href="cmd://link?https://wiki.manjaro.org">
                     <img class="cont-png" src="img/icons/wiki.png"/>
                     <div class="cont-text">Wiki</div>
                 </a>
             </span>
             <span class="cont-container">
                 <div class="cont-header">Support</div>
-                <a class="cont-item" href="cmd://link?http://forum.manjaro.org">
+                <a class="cont-item" href="cmd://link?https://forum.manjaro.org">
                     <img class="cont-png" src="img/icons/forums.png"/>
                     <div class="cont-text">Forums</div>
                 </a>
-                <a class="cont-item" href="cmd://link?http://manjaro.org/irc-channel/">
+                <a class="cont-item" href="cmd://link?https://kiwiirc.com/client/irc.freenode.net/?nick=manjaro|?#manjaro">
                     <img class="cont-png" src="img/icons/chatroom.png"/>
                     <div class="cont-text">Chat Room</div>
                 </a>
-                <a class="cont-item" href="cmd://link?http://lists.manjaro.org/cgi-bin/mailman/listinfo">
+                <a class="cont-item" href="cmd://link?https://lists.manjaro.org/cgi-bin/mailman/listinfo">
                     <img class="cont-png" src="img/icons/mailinglists.png"/>
                     <div class="cont-text">Mailing Lists</div>
                 </a>
