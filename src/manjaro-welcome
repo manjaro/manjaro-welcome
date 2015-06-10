@@ -158,6 +158,9 @@ class ManjaroAppView(WebKit.WebView):
         elif uri == 'install-cli':
             Popen(['manjaro-welcome-terminal', 'sudo setup'])
 
+        elif uri == 'manjaro-irc':
+            Popen(['xdg-open', "https://kiwiirc.com/client/irc.freenode.net/?nick=manjaro-web|?#manjaro"])
+
         elif uri == 'close':
             Gtk.main_quit()
 

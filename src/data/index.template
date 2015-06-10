@@ -40,7 +40,7 @@
                     <img class="cont-png" src="img/icons/forums.png"/>
                     <div class="cont-text">Forums</div>
                 </a>
-                <a class="cont-item" href="cmd://manjaro-welcome-irc">
+                <a class="cont-item" href="cmd://manjaro-irc">
                     <img class="cont-png" src="img/icons/chatroom.png"/>
                     <div class="cont-text">Chat Room</div>
                 </a>
