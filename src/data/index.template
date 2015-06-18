@@ -68,7 +68,7 @@
                     <div class="cont-text">Build Manjaro</div>
                 </a>
                 <a class="cont-item" id="donations" href="cmd://link?https://manjaro.github.io/donate/">
-                    <img class="cont-png" src="img/icons/mailinglists.png"/>
+                    <img class="cont-png" src="img/icons/donations.png"/>
                     <div class="cont-text">Donations</div>
                 </a>
             </span>
