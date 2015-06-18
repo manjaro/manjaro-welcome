@@ -6,7 +6,7 @@ html, body {
     margin: 0px;
     padding: 0px;
     height: 100%;
-    background-color: #f2f2f2;
+    background-color: #f7f7f7;
 }
 footer {
     margin: 0;
@@ -15,7 +15,6 @@ footer {
     overflow: hidden;
     background-image: url("../img/header.png");
     background-repeat: repeat;
-    box-shadow: 0px -5px 5px #888888;
 }
 
 #logo {
@@ -28,21 +27,20 @@ footer {
     overflow: hidden;
     background-image: url("../img/header.png");
     background-repeat: repeat;
-    box-shadow: 0px 5px 5px #888888;
 }
 #header-text {
     line-height: 90px;
     font-size: 45px;
     display: inline;
     vertical-align: middle;
-    color: #f2f2f2;
+    color: #f7f7f7;
     font-family: 'comfortaaregular';
 }
 #version {
     margin: 25px 10px 0px 0px;
     float: right;
     font-size: 17px;
-    color: #f2f2f2;
+    color: #f7f7f7;
     font-family: 'comfortaaregular';
 }
 #codename {
@@ -56,7 +54,7 @@ footer {
     margin-right: 10px;
     float: right;
     font-size: 17px;
-    color: #f2f2f2;
+    color: #f7f7f7;
     clear: right;
     font-family: 'comfortaaregular';
 }
@@ -64,7 +62,7 @@ footer {
     margin-top: -5px;
     border-radius: 0px 5px 5px 0px;
     box-shadow: 2px 0px 10px #888888;
-    background-color: #ffffff;
+    background-color: #f7f7f7;
     padding: 10px 10px;
     display: none;
     text-align: center;
@@ -92,35 +90,35 @@ footer {
 #checkbox {
     margin-top: 19px;
     float: right;
-    color: #f2f2f2;
+    color: #f7f7f7;
     font-size: 13px;
     font-family: 'droid_sansregular';
 }
 #checkbox a{
-    color: #f2f2f2;
+    color: #f7f7f7;
     text-decoration: none;
 }
 #checkbox a:hover, #checkbox a:active{
-    color: #f2f2f2;
+    color: #f7f7f7;
     text-decoration: none;
 }
 #close {
     margin: 12px;
     float: right;
-    color: #f2f2f2;
+    color: #f7f7f7;
     padding: 8px 12px 8px 12px;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     text-decoration: none;
-    background-image: linear-gradient(to bottom, #444444, #222222);
+    background-image: linear-gradient(to bottom, #3e4348, #292f34);
     background-repeat: repeat-x;
-    border: 1px solid #242424;
+    border: 1px solid #52575c;
     border-top: 1px solid #616161;
     border-radius: 3px;
     font-family: 'droid_sansregular';
     font-size: 13px;
 }
 #close:hover, #close:active{
-    color: #f2f2f2;
+    color: #f7f7f7;
     text-decoration: none;
 }
 
@@ -129,8 +127,8 @@ footer {
 }
 .icon-check {
     display: inline-block;
-    width: 13px;
-    height: 11px;
+    width: 14px;
+    height: 14px;
     margin-right: 1px;
     line-height: 14px;
     background-image: url("../img/check.png");
@@ -138,8 +136,8 @@ footer {
 }
 .icon-check-empty {
     display: inline-block;
-    width: 13px;
-    height: 11px;
+    width: 14px;
+    height: 14px;
     margin-right: 1px;
     line-height: 14px;
     background-image: url("../img/uncheck.png");
