@@ -109,10 +109,10 @@ footer {
     padding: 8px 12px 8px 12px;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     text-decoration: none;
-    background-image: linear-gradient(to bottom, #3e4348, #292f34);
+    background-image: linear-gradient(to bottom, #353d43, #292f34);
     background-repeat: repeat-x;
-    border: 1px solid #52575c;
-    border-top: 1px solid #616161;
+    border: 1px solid #6E7275;
+    border-top: 1px solid #6E7275;
     border-radius: 3px;
     font-family: 'droid_sansregular';
     font-size: 13px;
