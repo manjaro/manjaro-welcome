@@ -50,18 +50,23 @@
                 </a>
             </span>
             <span class="cont-container">
-                <div class="cont-header">Project</div>
-                <a class="cont-item" href="involved.html">
+                <div id="install" class="cont-header">Installation</div>
+                <div id="project" class="cont-header">Project</div>
+                <a class="cont-item" id="get-involved" href="involved.html">
                     <img class="cont-png" src="img/icons/getinvolved.png"/>
                     <div class="cont-text">Get Involved</div>
                 </a>
-                <a class="cont-item" id="install" href="cmd://install">
+                <a class="cont-item" id="install-thus" href="cmd://install-thus">
                     <img class="cont-png" src="img/icons/installmanjaro.png"/>
-                    <div class="cont-text">Install Manjaro</div>
+                    <div class="cont-text">use Thus</div>
+                </a>
+                <a class="cont-item" id="install-calamares" href="cmd://install-calamares">
+                    <img class="cont-png" src="img/icons/installmanjaro.png"/>
+                    <div class="cont-text">use Calamares</div>
                 </a>
                 <a class="cont-item" id="install-cli" href="cmd://install-cli">
                     <img class="cont-png" src="img/icons/installmanjarocli.png"/>
-                    <div class="cont-text">Install Manjaro (cli)</div>
+                    <div class="cont-text">use CLI-Installer</div>
                 </a>
                 <a class="cont-item" id="buildmanjaro"  href="cmd://link?https://github.com/manjaro/">
                     <img class="cont-png" src="img/icons/buildmanjaro.png"/>

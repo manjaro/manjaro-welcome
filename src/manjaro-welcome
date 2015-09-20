@@ -104,7 +104,27 @@ class ManjaroAppView(WebKit.WebView):
                 (self._config._autostart), to_json(not self._config._autostart)))
 
         self.execute_script("$('#{}').hide()".format(
-            'buildmanjaro' if self._config._live else 'install'))
+            'project' if self._config._live else 'install'))
+        if os.path.exists("/usr/bin/thus"):
+            self.execute_script("$('#{}').hide()".format(
+                'buildmanjaro' if self._config._live else 'install-thus'))
+        else:
+            self.execute_script("$('#{}').hide()".format(
+                'install-thus' if self._config._live  else '#'))
+            self.execute_script("$('#{}').hide()".format(
+                'get-involved' if self._config._live  else '#'))
+            self.execute_script("$('#{}').hide()".format(
+                'buildmanjaro' if self._config._live  else '#'))
+        if os.path.exists("/usr/bin/calamares"):
+            self.execute_script("$('#{}').hide()".format(
+                'get-involved' if self._config._live else 'install-calamares'))
+        else:
+            self.execute_script("$('#{}').hide()".format(
+                'install-calamares' if self._config._live  else '#'))
+            self.execute_script("$('#{}').hide()".format(
+                'get-involved' if self._config._live  else '#'))
+            self.execute_script("$('#{}').hide()".format(
+                'buildmanjaro' if self._config._live  else '#'))
         self.execute_script("$('#{}').hide()".format(
             'donations' if self._config._live else 'install-cli'))
         self.execute_script("$('#{}').hide()".format(
@@ -149,11 +169,11 @@ class ManjaroAppView(WebKit.WebView):
         elif uri == 'kde-help':
             Popen(['khelpcenter'])
 
-        elif uri == 'install':
-            if os.path.exists("/usr/bin/thus"):
-                Popen(['sudo', 'thus'])
-            elif os.path.exists("/usr/bin/calamares"):
-                Popen(['sudo', 'calamares'])
+        elif uri == 'install-thus':
+            Popen(['sudo', 'thus'])
+
+        elif uri == 'install-calamares':
+            Popen(['sudo', 'calamares'])
 
         elif uri == 'install-cli':
             Popen(['manjaro-welcome-terminal', 'sudo setup'])
