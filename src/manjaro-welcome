@@ -105,26 +105,16 @@ class ManjaroAppView(WebKit.WebView):
 
         self.execute_script("$('#{}').hide()".format(
             'project' if self._config._live else 'install'))
-        if os.path.exists("/usr/bin/thus"):
-            self.execute_script("$('#{}').hide()".format(
-                'buildmanjaro' if self._config._live else 'install-thus'))
-        else:
+        if not os.path.exists("/usr/bin/thus"):
             self.execute_script("$('#{}').hide()".format(
                 'install-thus' if self._config._live  else '#'))
-            self.execute_script("$('#{}').hide()".format(
-                'get-involved' if self._config._live  else '#'))
-            self.execute_script("$('#{}').hide()".format(
-                'buildmanjaro' if self._config._live  else 'install-thus'))
-        if os.path.exists("/usr/bin/calamares"):
-            self.execute_script("$('#{}').hide()".format(
-                'get-involved' if self._config._live else 'install-calamares'))
-        else:
+        if not os.path.exists("/usr/bin/calamares"):
             self.execute_script("$('#{}').hide()".format(
                 'install-calamares' if self._config._live  else '#'))
-            self.execute_script("$('#{}').hide()".format(
-                'get-involved' if self._config._live  else 'install-calamares'))
-            self.execute_script("$('#{}').hide()".format(
-                'buildmanjaro' if self._config._live  else '#'))
+        self.execute_script("$('#{}').hide()".format(
+            'buildmanjaro' if self._config._live else 'install-thus'))
+        self.execute_script("$('#{}').hide()".format(
+            'get-involved' if self._config._live  else 'install-calamares'))
         self.execute_script("$('#{}').hide()".format(
             'donations' if self._config._live else 'install-cli'))
         self.execute_script("$('#{}').hide()".format(
