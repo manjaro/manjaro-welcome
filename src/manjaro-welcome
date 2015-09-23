@@ -111,6 +111,9 @@ class ManjaroAppView(WebKit.WebView):
         if not os.path.exists("/usr/bin/calamares"):
             self.execute_script("$('#{}').hide()".format(
                 'install-calamares' if self._config._live  else '#'))
+        if not os.path.exists("/usr/bin/setup"):
+            self.execute_script("$('#{}').hide()".format(
+                'install-cli' if self._config._live  else '#'))
         self.execute_script("$('#{}').hide()".format(
             'buildmanjaro' if self._config._live else 'install-thus'))
         self.execute_script("$('#{}').hide()".format(
