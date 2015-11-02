@@ -299,11 +299,13 @@ fi
 detectDE()
 {
     if [ x"$KDE_FULL_SESSION" = x"true" ]; then DE=kde;
-    elif [ x"$GNOME_DESKTOP_SESSION_ID" != x"" ]; then DE=gnome;
+    elif [ x"$DESKTOP_SESSION" = x"gnome" ]; then DE=gnome;
     elif `dbus-send --print-reply --dest=org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus.GetNameOwner string:org.gnome.SessionManager > /dev/null 2>&1` ; then DE=gnome;
     elif xprop -root _DT_SAVE_MODE 2> /dev/null | grep ' = \"xfce4\"$' >/dev/null 2>&1; then DE=xfce;
     elif [ x"$DESKTOP_SESSION" = x"LXDE" ]; then DE=lxde;
     elif which lxterminal &>/dev/null; then DE=lxde;
+    elif [ x"$DESKTOP_SESSION" = x"deepin" ]; then DE=deepin;
+    elif which deepin-terminal &>/dev/null; then DE=deepin;
     else DE=""
     fi
 }
@@ -456,6 +458,19 @@ terminal_lxde()
     fi
 }
 
+terminal_deepin()
+{
+    if which deepin-terminal &>/dev/null; then
+        if [ x"$1" = x"" ]; then
+            deepin-terminal
+        else
+            deepin-terminal -e "$1"
+        fi
+    else
+        terminal_generic "$1"
+    fi
+}
+
 #[ x"$1" != x"" ] || exit_failure_syntax
 
 command=
@@ -498,6 +513,10 @@ case "$DE" in
 
     lxde)
     terminal_lxde "$command"
+    ;;
+
+    deepin)
+    terminal_deepin "$command"
     ;;
 
     generic)
