@@ -2,8 +2,8 @@
 # Maintainer: Rob McCathie <rob[at]manjaro[dot]org>
 
 pkgname=manjaro-welcome
-pkgver=0.9.0
-pkgrel=2
+pkgver=15.12-dev
+pkgrel=1
 pkgdesc="The Manjaro Welcome utility provides a simple interface for accessing all the relevant information for a new user of Manjaro."
 arch=(any)
 url="https://github.com/manjaro/$pkgname"
@@ -17,7 +17,7 @@ _branch=development
 if [ "$_git" == "No" ]; then
    ## Stable release
    source=("$pkgname-$pkgver.tar.gz::https://github.com/manjaro/$pkgname/archive/$pkgver.tar.gz")
-   sha256sums=('9aa63738feeb293896f9325398d56c2ca48e1e95a9e64c7208aca19bc9e884b5')
+   sha256sums=('7434fb2cbb3f6e551661c16233c0532f7b7baf2051810fe99e5792709e678ffe')
 else
    ## Git release
    source=(git+https://github.com/manjaro/$pkgname.git#branch=$_branch)
@@ -25,8 +25,8 @@ else
 fi
 
 package() {
-    if [ -e "$srcdir/$pkgname.git" ]; then
-        cd "$srcdir/$pkgname.git/src"
+    if [ -e "$srcdir/$pkgname-$pkgver" ]; then
+        cd "$srcdir/$pkgname-$pkgver/src"
     else
         cd "$srcdir/$pkgname/src"
     fi
@@ -40,5 +40,6 @@ package() {
     install -D -m644 ${pkgname}.desktop ${pkgdir}/usr/share/applications/${pkgname}.desktop
     install -D -m755 "${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
     install -D -m755 "${pkgname}-terminal" "${pkgdir}/usr/bin/${pkgname}-terminal"
+    install -D -m755 "${pkgname}-terminal" "${pkgdir}/usr/bin/${pkgname}-irc"
 
 }
