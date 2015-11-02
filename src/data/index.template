@@ -13,7 +13,7 @@
         <div id="header">
             <img id="logo" src="img/logo.png" />
             <div id="header-text">manjaro</div>
-            <div id="codename">Bellatrix</div><div id="version">0.9.0</div>
+            <div id="codename">Bellatrix</div><div id="version">15.09</div>
             <div id="arch">64-bit</div>
         </div>
         <div class="manjaro-desc">Welcome to Manjaro, and thank you for joining our community!</div>
@@ -29,46 +29,51 @@
                     <img class="cont-png" src="img/icons/newfeatures.png"/>
                     <div class="cont-text">Release Info</div>
                 </a>
-                <a class="cont-item" href="cmd://link?http://wiki.manjaro.org">
+                <a class="cont-item" href="cmd://link?https://wiki.manjaro.org">
                     <img class="cont-png" src="img/icons/wiki.png"/>
                     <div class="cont-text">Wiki</div>
                 </a>
             </span>
             <span class="cont-container">
                 <div class="cont-header">Support</div>
-                <a class="cont-item" href="cmd://link?http://forum.manjaro.org">
+                <a class="cont-item" href="cmd://link?https://forum.manjaro.org">
                     <img class="cont-png" src="img/icons/forums.png"/>
                     <div class="cont-text">Forums</div>
                 </a>
-                <a class="cont-item" href="cmd://link?http://manjaro.org/irc-channel/">
+                <a class="cont-item" href="cmd://manjaro-irc">
                     <img class="cont-png" src="img/icons/chatroom.png"/>
                     <div class="cont-text">Chat Room</div>
                 </a>
-                <a class="cont-item" href="cmd://link?http://lists.manjaro.org/cgi-bin/mailman/listinfo">
+                <a class="cont-item" href="cmd://link?https://lists.manjaro.org/cgi-bin/mailman/listinfo">
                     <img class="cont-png" src="img/icons/mailinglists.png"/>
                     <div class="cont-text">Mailing Lists</div>
                 </a>
             </span>
             <span class="cont-container">
-                <div class="cont-header">Project</div>
-                <a class="cont-item" href="involved.html">
+                <div id="install" class="cont-header">Installation</div>
+                <div id="project" class="cont-header">Project</div>
+                <a class="cont-item" id="get-involved" href="involved.html">
                     <img class="cont-png" src="img/icons/getinvolved.png"/>
                     <div class="cont-text">Get Involved</div>
                 </a>
-                <a class="cont-item" id="install" href="cmd://install">
+                <a class="cont-item" id="install-thus" href="cmd://install-thus">
                     <img class="cont-png" src="img/icons/installmanjaro.png"/>
-                    <div class="cont-text">Install Manjaro</div>
+                    <div class="cont-text">use Thus</div>
+                </a>
+                <a class="cont-item" id="install-calamares" href="cmd://install-calamares">
+                    <img class="cont-png" src="img/icons/installmanjaro.png"/>
+                    <div class="cont-text">use Calamares</div>
                 </a>
                 <a class="cont-item" id="install-cli" href="cmd://install-cli">
                     <img class="cont-png" src="img/icons/installmanjarocli.png"/>
-                    <div class="cont-text">Install Manjaro (cli)</div>
+                    <div class="cont-text">use CLI-Installer</div>
                 </a>
                 <a class="cont-item" id="buildmanjaro"  href="cmd://link?https://github.com/manjaro/">
                     <img class="cont-png" src="img/icons/buildmanjaro.png"/>
                     <div class="cont-text">Build Manjaro</div>
                 </a>
-                <a class="cont-item" id="donations" href="cmd://link?http://manjaro.org/donate/">
-                    <img class="cont-png" src="img/icons/mailinglists.png"/>
+                <a class="cont-item" id="donations" href="cmd://link?https://manjaro.github.io/donate/">
+                    <img class="cont-png" src="img/icons/donations.png"/>
                     <div class="cont-text">Donations</div>
                 </a>
             </span>

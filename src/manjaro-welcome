@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 #
-# Copyright 2013 "Manjaro Linux" <support@manjaro.org>
-# Copyright 2012-2013 "Korora Project" <dev@kororaproject.org>
+# Copyright © 2012-2013 "Korora Project" <dev@kororaproject.org>
+# Copyright © 2013-2015 "Manjaro Linux" <support@manjaro.org>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the temms of the GNU General Public License as published by
@@ -104,7 +104,20 @@ class ManjaroAppView(WebKit.WebView):
                 (self._config._autostart), to_json(not self._config._autostart)))
 
         self.execute_script("$('#{}').hide()".format(
-            'buildmanjaro' if self._config._live else 'install'))
+            'project' if self._config._live else 'install'))
+        if not os.path.exists("/usr/bin/thus"):
+            self.execute_script("$('#{}').hide()".format(
+                'install-thus' if self._config._live  else '#'))
+        if not os.path.exists("/usr/bin/calamares"):
+            self.execute_script("$('#{}').hide()".format(
+                'install-calamares' if self._config._live  else '#'))
+        if not os.path.exists("/usr/bin/setup"):
+            self.execute_script("$('#{}').hide()".format(
+                'install-cli' if self._config._live  else '#'))
+        self.execute_script("$('#{}').hide()".format(
+            'buildmanjaro' if self._config._live else 'install-thus'))
+        self.execute_script("$('#{}').hide()".format(
+            'get-involved' if self._config._live  else 'install-calamares'))
         self.execute_script("$('#{}').hide()".format(
             'donations' if self._config._live else 'install-cli'))
         self.execute_script("$('#{}').hide()".format(
@@ -149,14 +162,17 @@ class ManjaroAppView(WebKit.WebView):
         elif uri == 'kde-help':
             Popen(['khelpcenter'])
 
-        elif uri == 'install':
-            if os.path.exists("/usr/bin/thus"):
-                Popen(['sudo', 'thus'])
-            if os.path.exists("/usr/bin/calamares"):
-                Popen(['sudo', 'calamares'])
+        elif uri == 'install-thus':
+            Popen(['sudo', 'thus'])
+
+        elif uri == 'install-calamares':
+            Popen(['sudo', 'calamares'])
 
         elif uri == 'install-cli':
             Popen(['manjaro-welcome-terminal', 'sudo setup'])
+
+        elif uri == 'manjaro-irc':
+            Popen(['xdg-open', "https://kiwiirc.com/client/irc.freenode.net/?nick=manjaro-web|?#manjaro"])
 
         elif uri == 'close':
             Gtk.main_quit()
