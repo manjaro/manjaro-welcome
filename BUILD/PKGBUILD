@@ -1,45 +1,48 @@
 # Maintainer: Philip Müller <philm[at]manjaro[dot]org>
 # Maintainer: Rob McCathie <rob[at]manjaro[dot]org>
 
-pkgname=manjaro-welcome
-pkgver=15.12-dev
+pkgname=manjaro-welcome-dev
+_pkgname=manjaro-welcome
+pkgver=15.12
 pkgrel=1
 pkgdesc="The Manjaro Welcome utility provides a simple interface for accessing all the relevant information for a new user of Manjaro."
 arch=(any)
-url="https://github.com/manjaro/$pkgname"
+url="https://github.com/manjaro/$_pkgname"
 license=('GPL')
 depends=('python-gobject' 'pywebkitgtk')
 makedepends=('git')
 options=(!emptydirs)
+conflicts=(manjaro-welcome)
+provides=(manjaro-welcome)
 _git=Yes
 _branch=development
 
 if [ "$_git" == "No" ]; then
    ## Stable release
-   source=("$pkgname-$pkgver.tar.gz::https://github.com/manjaro/$pkgname/archive/$pkgver.tar.gz")
+   source=("$_pkgname-$pkgver.tar.gz::https://github.com/manjaro/$_pkgname/archive/$pkgver.tar.gz")
    sha256sums=('7434fb2cbb3f6e551661c16233c0532f7b7baf2051810fe99e5792709e678ffe')
 else
    ## Git release
-   source=(git+https://github.com/manjaro/$pkgname.git#branch=$_branch)
+   source=(git+https://github.com/manjaro/$_pkgname.git#branch=$_branch)
    sha256sums=('SKIP')
 fi
 
 package() {
-    if [ -e "$srcdir/$pkgname-$pkgver" ]; then
-        cd "$srcdir/$pkgname-$pkgver/src"
+    if [ -e "$srcdir/$_pkgname-$pkgver" ]; then
+        cd "$srcdir/$_pkgname-$pkgver/src"
     else
-        cd "$srcdir/$pkgname/src"
+        cd "$srcdir/$_pkgname/src"
     fi
     
-    mkdir -p "${pkgdir}/usr/share/${pkgname}"
+    mkdir -p "${pkgdir}/usr/share/${_pkgname}"
     mkdir -p "${pkgdir}/usr/share/icons/hicolor"
-    cp  -a data/* "${pkgdir}/usr/share/${pkgname}"
-    touch "${pkgdir}/usr/share/${pkgname}/index.html"
-    chmod 666 "${pkgdir}/usr/share/${pkgname}/index.html"
-    install -D -m644 ${pkgname}.desktop ${pkgdir}/etc/skel/.config/autostart/${pkgname}.desktop
-    install -D -m644 ${pkgname}.desktop ${pkgdir}/usr/share/applications/${pkgname}.desktop
-    install -D -m755 "${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
-    install -D -m755 "${pkgname}-terminal" "${pkgdir}/usr/bin/${pkgname}-terminal"
-    install -D -m755 "${pkgname}-terminal" "${pkgdir}/usr/bin/${pkgname}-irc"
+    cp  -a data/* "${pkgdir}/usr/share/${_pkgname}"
+    touch "${pkgdir}/usr/share/${_pkgname}/index.html"
+    chmod 666 "${pkgdir}/usr/share/${_pkgname}/index.html"
+    install -D -m644 ${_pkgname}.desktop ${pkgdir}/etc/skel/.config/autostart/${_pkgname}.desktop
+    install -D -m644 ${_pkgname}.desktop ${pkgdir}/usr/share/applications/${_pkgname}.desktop
+    install -D -m755 "${_pkgname}" "${pkgdir}/usr/bin/${_pkgname}"
+    install -D -m755 "${_pkgname}-terminal" "${pkgdir}/usr/bin/${_pkgname}-terminal"
+    install -D -m755 "${_pkgname}-terminal" "${pkgdir}/usr/bin/${_pkgname}-irc"
 
 }

@@ -33,6 +33,29 @@ from webbrowser import open_new_tab
 from json import dumps as to_json
 from gi.repository import WebKit, Gtk
 
+def get_lsb_information():
+    distinfo = {}
+    path='/etc/lsb-release'
+    if os.path.exists(path):
+        try:
+            for line in open(path):
+                line = line.strip()
+                if not line:
+                    continue
+                # Skip invalid lines
+                if not '=' in line:
+                    continue
+                var, arg = line.split('=', 1)
+                if var.startswith('DISTRIB_'):
+                    var = var[8:]
+                    if arg.startswith('"') and arg.endswith('"'):
+                        arg = arg[1:-1]
+                    if arg: # Ignore empty arguments
+                        distinfo[var] = arg
+        except IOError as msg:
+            print(msg)
+           
+    return distinfo
 
 class WelcomeConfig(object):
     def __init__(self):
@@ -41,6 +64,14 @@ class WelcomeConfig(object):
             self._arch = '64-bit'
         else:
             self._arch = '32-bit'
+
+        self.lsb_information = get_lsb_information()
+
+        # store our codename
+        self._codename = self.lsb_information.get('CODENAME', 'n/a')
+
+        # store our version
+        self._version = self.lsb_information.get('RELEASE', 'n/a')
 
         # store we are a live CD session
         self._live = os.path.exists('/bootmnt/manjaro')
@@ -99,6 +130,8 @@ class ManjaroAppView(WebKit.WebView):
         # we just use jQuery to manually toggle
 
         self.execute_script("$('#arch').html('{}')".format(self._config._arch))
+        self.execute_script("$('#codename').html('{}')".format(self._config._codename))
+        self.execute_script("$('#version').html('{}')".format(self._config._version))
         self.execute_script("$('#autostart').toggleClass('icon-check', {})\
             .toggleClass('icon-check-empty', {})".format(to_json
                 (self._config._autostart), to_json(not self._config._autostart)))
