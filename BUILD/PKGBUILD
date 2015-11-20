@@ -4,7 +4,7 @@
 pkgname=manjaro-welcome-dev
 _pkgname=manjaro-welcome
 pkgver=15.12
-pkgrel=1
+pkgrel=3
 pkgdesc="The Manjaro Welcome utility provides a simple interface for accessing all the relevant information for a new user of Manjaro."
 arch=(any)
 url="https://github.com/manjaro/$_pkgname"
