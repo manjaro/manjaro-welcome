@@ -305,7 +305,7 @@ detectDE()
     elif [ x"$DESKTOP_SESSION" = x"LXDE" ]; then DE=lxde;
     elif which lxterminal &>/dev/null; then DE=lxde;
     elif [ x"$DESKTOP_SESSION" = x"deepin" ]; then DE=deepin;
-    elif which deepin-terminal &>/dev/null; then DE=deepin;
+    elif [ x"$DESKTOP_SESSION" = x"i3" ]; then DE=i3;
     else DE=""
     fi
 }
@@ -471,6 +471,19 @@ terminal_deepin()
     fi
 }
 
+terminal_i3()
+{
+    if which terminal &>/dev/null; then
+        if [ x"$1" = x"" ]; then
+            terminal
+        else
+            terminal -e "$1"
+        fi
+    else
+        terminal_generic "$1"
+    fi
+}
+
 #[ x"$1" != x"" ] || exit_failure_syntax
 
 command=
@@ -517,6 +530,10 @@ case "$DE" in
 
     deepin)
     terminal_deepin "$command"
+    ;;
+
+    i3)
+    terminal_i3 "$command"
     ;;
 
     generic)
