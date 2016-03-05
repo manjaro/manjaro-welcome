@@ -54,7 +54,7 @@ def get_lsb_information():
                         distinfo[var] = arg
         except IOError as msg:
             print(msg)
-           
+
     return distinfo
 
 class WelcomeConfig(object):
@@ -144,7 +144,7 @@ class ManjaroAppView(WebKit.WebView):
         if not os.path.exists("/usr/bin/calamares"):
             self.execute_script("$('#{}').hide()".format(
                 'install-calamares' if self._config._live  else '#'))
-        if not os.path.exists("/usr/bin/setup"):
+        if not os.path.exists("/usr/bin/cli-installer"):
             self.execute_script("$('#{}').hide()".format(
                 'install-cli' if self._config._live  else '#'))
         self.execute_script("$('#{}').hide()".format(
@@ -179,7 +179,7 @@ class ManjaroAppView(WebKit.WebView):
         self.l_uri = uri
 
         page = urlopen(uri)
-        frame.load_string(page.read().decode("iso-8859-15"), "text/html", 
+        frame.load_string(page.read().decode("iso-8859-15"), "text/html",
             "iso-8859-15", page.geturl())
         pol_dec.ignore()
         return True
@@ -202,7 +202,7 @@ class ManjaroAppView(WebKit.WebView):
             Popen(['sudo', 'calamares'])
 
         elif uri == 'install-cli':
-            Popen(['manjaro-welcome-terminal', 'sudo setup'])
+            Popen(['manjaro-welcome-terminal', 'sudo cli-installer'])
 
         elif uri == 'manjaro-irc':
             Popen(['xdg-open', "https://kiwiirc.com/client/irc.freenode.net/?nick=manjaro-web|?#manjaro"])
