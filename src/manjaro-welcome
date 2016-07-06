@@ -219,7 +219,7 @@ class ManjaroAppView(WebKit.WebView):
         elif uri == 'manjaro-irc':
             Popen([
                 'xdg-open',
-                """https://kiwiirc.com/client/
+                """https://kiwiirc.com/client/\
                 irc.freenode.net/?nick=manjaro-web|?#manjaro"""
             ])
 
@@ -248,7 +248,7 @@ class WelcomeApp(object):
 
         # check for relative path
         if os.path.exists(os.path.join(self._location, 'data/')):
-            print("""Using relative path for data source.
+            print("""Using relative path for data source.\
                     Non-production testing.""")
             self._data_path = os.path.join(self._location, 'data/')
         elif os.path.exists('/usr/share/manjaro-welcome/'):
