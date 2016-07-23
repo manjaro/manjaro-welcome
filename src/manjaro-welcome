@@ -208,10 +208,10 @@ class ManjaroAppView(WebKit.WebView):
             Popen(['khelpcenter'])
 
         elif uri == 'install-thus':
-            Popen(['sudo', 'thus'])
+            Popen(['sudo', '-E', 'thus'])
 
         elif uri == 'install-calamares':
-            Popen(['sudo', 'calamares'])
+            Popen(['sudo', '-E', 'calamares'])
 
         elif uri == 'install-cli':
             Popen(['manjaro-welcome-terminal', 'sudo cli-installer'])
