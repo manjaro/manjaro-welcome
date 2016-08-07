@@ -219,8 +219,7 @@ class ManjaroAppView(WebKit.WebView):
         elif uri == 'manjaro-irc':
             Popen([
                 'xdg-open',
-                """https://kiwiirc.com/client/\
-                irc.freenode.net/?nick=manjaro-web|?#manjaro"""
+                """https://kiwiirc.com/client/irc.freenode.net/?nick=manjaro-web|?#manjaro"""
             ])
 
         elif uri == 'close':
