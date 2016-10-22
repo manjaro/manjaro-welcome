@@ -13,7 +13,7 @@
         <div id="header">
             <img id="logo" src="img/logo.png" />
             <div id="header-text">manjaro</div>
-            <div id="codename">Ellada</div><div id="version">16.08</div>
+            <div id="codename">Ellada</div><div id="version">16.10</div>
             <div id="arch">64-bit</div>
         </div>
         <div class="manjaro-desc">Welcome to Manjaro, and thank you for joining our community!</div>
