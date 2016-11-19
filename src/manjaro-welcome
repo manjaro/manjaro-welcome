@@ -76,7 +76,7 @@ class WelcomeConfig(object):
         self._version = self.lsb_information.get('RELEASE', 'n/a')
 
         # store we are a live CD session
-        self._live = os.path.exists('/run/miso/bootmnt/manjaro')
+        self._live = os.path.exists('/bootmnt/manjaro') or os.path.exists('/run/miso/bootmnt/manjaro')
 
         # store full path to our binary
         self._welcome_bin_path = os.path.abspath(
