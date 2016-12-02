@@ -57,10 +57,7 @@ def get_lsb_information():
 class WelcomeConfig(object):
     def __init__(self):
         # store our base architecture
-        if os.uname()[4] == 'x86_64':
-            self._arch = '64-bit'
-        else:
-            self._arch = '32-bit'
+        self._arch = '64-bit' if os.uname()[4] else '32-bit'
 
         self.lsb_information = get_lsb_information()
 
