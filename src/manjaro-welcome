@@ -37,24 +37,19 @@ from gi.repository import WebKit, Gtk
 def get_lsb_information():
     distinfo = {}
     path = '/etc/lsb-release'
-    if os.path.exists(path):
-        try:
-            for line in open(path):
-                line = line.strip()
-                if not line:
-                    continue
-                # Skip invalid lines
-                if '=' not in line:
-                    continue
-                var, arg = line.split('=', 1)
-                if var.startswith('DISTRIB_'):
-                    var = var[8:]
+    try:
+        with open(path) as lsb_file:
+            for line in lsb_file:
+                if line and '=' in line:
+                    var, arg = line.rstrip().split('=')
+                    if var.startswith('DISTRIB_'):
+                        var = var[8:]
                     if arg.startswith('"') and arg.endswith('"'):
                         arg = arg[1:-1]
                     if arg:  # Ignore empty arguments
                         distinfo[var] = arg
-        except IOError as msg:
-            print(msg)
+    except (IOError, OSError) as msg:
+        print(msg)
 
     return distinfo
 
@@ -62,10 +57,7 @@ def get_lsb_information():
 class WelcomeConfig(object):
     def __init__(self):
         # store our base architecture
-        if os.uname()[4] == 'x86_64':
-            self._arch = '64-bit'
-        else:
-            self._arch = '32-bit'
+        self._arch = '64-bit' if os.uname()[4] else '32-bit'
 
         self.lsb_information = get_lsb_information()
 
