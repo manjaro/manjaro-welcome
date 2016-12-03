@@ -329,7 +329,8 @@ kfmclient_fix_exit_code()
 
 terminal_kde()
 {
-    terminal=`kreadconfig --file kdeglobals --group General --key TerminalApplication --default konsole`
+    [ -f /usr/bin/kreadconfig ] && terminal=`kreadconfig --file kdeglobals --group General --key TerminalApplication --default konsole`
+    [ -f /usr/bin/kreadconfig5 ] && terminal=`kreadconfig5 --file kdeglobals --group General --key TerminalApplication --default konsole`
 
     terminal_exec=`which $terminal 2>/dev/null`
 

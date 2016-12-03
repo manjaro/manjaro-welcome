@@ -13,7 +13,7 @@
         <div id="header">
             <img id="logo" src="img/logo.png" />
             <div id="header-text">manjaro</div>
-            <div id="codename">Capella</div><div id="version">15.12</div>
+            <div id="codename">Ellada</div><div id="version">16.10</div>
             <div id="arch">64-bit</div>
         </div>
         <div class="manjaro-desc">Welcome to Manjaro, and thank you for joining our community!</div>
@@ -72,7 +72,7 @@
                     <img class="cont-png" src="img/icons/buildmanjaro.png"/>
                     <div class="cont-text">Build Manjaro</div>
                 </a>
-                <a class="cont-item" id="donations" href="cmd://link?https://manjaro.github.io/donate/">
+                <a class="cont-item" id="donations" href="cmd://link?https://manjaro.org/donate/">
                     <img class="cont-png" src="img/icons/donations.png"/>
                     <div class="cont-text">Donations</div>
                 </a>

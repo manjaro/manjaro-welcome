@@ -33,9 +33,10 @@ from webbrowser import open_new_tab
 from json import dumps as to_json
 from gi.repository import WebKit, Gtk
 
+
 def get_lsb_information():
     distinfo = {}
-    path='/etc/lsb-release'
+    path = '/etc/lsb-release'
     if os.path.exists(path):
         try:
             for line in open(path):
@@ -43,19 +44,20 @@ def get_lsb_information():
                 if not line:
                     continue
                 # Skip invalid lines
-                if not '=' in line:
+                if '=' not in line:
                     continue
                 var, arg = line.split('=', 1)
                 if var.startswith('DISTRIB_'):
                     var = var[8:]
                     if arg.startswith('"') and arg.endswith('"'):
                         arg = arg[1:-1]
-                    if arg: # Ignore empty arguments
+                    if arg:  # Ignore empty arguments
                         distinfo[var] = arg
         except IOError as msg:
             print(msg)
-           
+
     return distinfo
+
 
 class WelcomeConfig(object):
     def __init__(self):
@@ -74,16 +76,18 @@ class WelcomeConfig(object):
         self._version = self.lsb_information.get('RELEASE', 'n/a')
 
         # store we are a live CD session
-        self._live = os.path.exists('/bootmnt/manjaro')
+        self._live = os.path.exists('/bootmnt/manjaro') or os.path.exists('/run/miso/bootmnt/manjaro')
 
         # store full path to our binary
-        self._welcome_bin_path = os.path.abspath(inspect.getfile(inspect.currentframe()))
+        self._welcome_bin_path = os.path.abspath(
+            inspect.getfile(inspect.currentframe()))
 
         # store directory to our welcome configuration
         self._config_dir = os.path.expanduser('~/.config/manjaro/welcome/')
 
         # store full path to our autostart symlink
-        self._autostart_path = os.path.expanduser('~/.config/autostart/manjaro-welcome.desktop')
+        self._autostart_path = os.path.expanduser(
+            '~/.config/autostart/manjaro-welcome.desktop')
 
         # ensure our config directory exists
         if not os.path.exists(self._config_dir):
@@ -100,7 +104,8 @@ class WelcomeConfig(object):
         if state and not os.path.exists(self._autostart_path):
             # create the autostart symlink
             try:
-                os.symlink('/usr/share/applications/manjaro-welcome.desktop', self._autostart_path)
+                os.symlink('/usr/share/applications/manjaro-welcome.desktop',
+                           self._autostart_path)
             except OSError as e:
                 print(e)
                 pass
@@ -114,6 +119,7 @@ class WelcomeConfig(object):
         # determine autostart state based on absence of the disable file
         self._autostart = os.path.exists(self._autostart_path)
 
+
 class ManjaroAppView(WebKit.WebView):
     def __init__(self):
         WebKit.WebView.__init__(self)
@@ -121,36 +127,41 @@ class ManjaroAppView(WebKit.WebView):
         self._config = WelcomeConfig()
 
         self.connect('load-finished', self._load_finished_cb)
-        self.connect('navigation-policy-decision-requested', self._nav_request_policy_decision_cb)
+        self.connect('navigation-policy-decision-requested',
+                     self._nav_request_policy_decision_cb)
         self.l_uri = None
 
     def _push_config(self):
-        # TODO: push notification should be connected to angularjs and use a broadcast event
-        # any suitable controllers will be able to listen and respond accordingly, for now
-        # we just use jQuery to manually toggle
+        # TODO: push notification should be connected to angularjs
+        # and use a broadcast event any suitable controllers will
+        # be able to listen and respond accordingly, for now we just
+        # use jQuery to manually toggle
 
         self.execute_script("$('#arch').html('{}')".format(self._config._arch))
-        self.execute_script("$('#codename').html('{}')".format(self._config._codename))
-        self.execute_script("$('#version').html('{}')".format(self._config._version))
+        self.execute_script(
+            "$('#codename').html('{}')".format(self._config._codename))
+        self.execute_script(
+            "$('#version').html('{}')".format(self._config._version))
         self.execute_script("$('#autostart').toggleClass('icon-check', {})\
-            .toggleClass('icon-check-empty', {})".format(to_json
-                (self._config._autostart), to_json(not self._config._autostart)))
+            .toggleClass('icon-check-empty', {})".format(
+                to_json(self._config._autostart),
+                to_json(not self._config._autostart)))
 
         self.execute_script("$('#{}').hide()".format(
             'project' if self._config._live else 'install'))
         if not os.path.exists("/usr/bin/thus"):
             self.execute_script("$('#{}').hide()".format(
-                'install-thus' if self._config._live  else '#'))
+                'install-thus' if self._config._live else '#'))
         if not os.path.exists("/usr/bin/calamares"):
             self.execute_script("$('#{}').hide()".format(
-                'install-calamares' if self._config._live  else '#'))
-        if not os.path.exists("/usr/bin/setup"):
+                'install-calamares' if self._config._live else '#'))
+        if not os.path.exists("/usr/bin/cli-installer"):
             self.execute_script("$('#{}').hide()".format(
-                'install-cli' if self._config._live  else '#'))
+                'install-cli' if self._config._live else '#'))
         self.execute_script("$('#{}').hide()".format(
             'buildmanjaro' if self._config._live else 'install-thus'))
         self.execute_script("$('#{}').hide()".format(
-            'get-involved' if self._config._live  else 'install-calamares'))
+            'get-involved' if self._config._live else 'install-calamares'))
         self.execute_script("$('#{}').hide()".format(
             'donations' if self._config._live else 'install-cli'))
         self.execute_script("$('#{}').hide()".format(
@@ -159,7 +170,8 @@ class ManjaroAppView(WebKit.WebView):
     def _load_finished_cb(self, view, frame):
         self._push_config()
 
-    def _nav_request_policy_decision_cb(self, view, frame, net_req, nav_act, pol_dec):
+    def _nav_request_policy_decision_cb(self, view, frame,
+                                        net_req, nav_act, pol_dec):
         uri = net_req.get_uri()
 
         try:
@@ -179,8 +191,8 @@ class ManjaroAppView(WebKit.WebView):
         self.l_uri = uri
 
         page = urlopen(uri)
-        frame.load_string(page.read().decode("iso-8859-15"), "text/html", 
-            "iso-8859-15", page.geturl())
+        frame.load_string(page.read().decode("iso-8859-15"), "text/html",
+                          "iso-8859-15", page.geturl())
         pol_dec.ignore()
         return True
 
@@ -196,16 +208,19 @@ class ManjaroAppView(WebKit.WebView):
             Popen(['khelpcenter'])
 
         elif uri == 'install-thus':
-            Popen(['sudo', 'thus'])
+            Popen(['sudo', '-E', 'thus'])
 
         elif uri == 'install-calamares':
-            Popen(['sudo', 'calamares'])
+            Popen(['sudo', '-E', 'calamares'])
 
         elif uri == 'install-cli':
-            Popen(['manjaro-welcome-terminal', 'sudo setup'])
+            Popen(['manjaro-welcome-terminal', 'sudo cli-installer'])
 
         elif uri == 'manjaro-irc':
-            Popen(['xdg-open', "https://kiwiirc.com/client/irc.freenode.net/?nick=manjaro-web|?#manjaro"])
+            Popen([
+                'xdg-open',
+                """https://kiwiirc.com/client/irc.freenode.net/?nick=manjaro-web|?#manjaro"""
+            ])
 
         elif uri == 'close':
             Gtk.main_quit()
@@ -232,7 +247,8 @@ class WelcomeApp(object):
 
         # check for relative path
         if os.path.exists(os.path.join(self._location, 'data/')):
-            print('Using relative path for data source. Non-production testing.')
+            print("""Using relative path for data source.\
+                    Non-production testing.""")
             self._data_path = os.path.join(self._location, 'data/')
         elif os.path.exists('/usr/share/manjaro-welcome/'):
             print('Using /usr/share/manjaro-welcome/ path.')
@@ -256,11 +272,12 @@ class WelcomeApp(object):
         mv = ManjaroAppView()
 
         # load our index file
-        file_in = os.path.abspath(os.path.join(self._data_path, 'index.template'))
+        file_in = os.path.abspath(os.path.join(self._data_path,
+                                               'index.template'))
         file_out = os.path.abspath(os.path.join(self._data_path, 'index.html'))
         is_live = mv._config._live
         repl = {'live': ('' if is_live else 'hide'),
-         'installed': ('hide' if is_live else '')}
+                'installed': ('hide' if is_live else '')}
         with open(file_in, 'rt') as infile, open(file_out, 'wt') as outfile:
             for line in infile:
                 for src, target in repl.items():
